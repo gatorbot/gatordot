@@ -2,6 +2,8 @@
 // DotStar Test
 // My intent is to create my own SPI-based dotstar class
 #include "Particle.h"
+#ifndef GATORDOT_H
+#define GATORDOT_H
 
 struct jColor {
     uint8_t red;
@@ -38,3 +40,4 @@ struct GatorDot {
     void fill(PixelBlock* pxls);
     void clear();
 };
+#endif
