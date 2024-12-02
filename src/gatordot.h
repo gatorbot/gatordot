@@ -1,6 +1,7 @@
 // ©2020 GatorbotLLC 
-// DotStar Test
-// My intent is to create my own SPI-based dotstar class
+// MIT License
+// My intent is to create a native SPI-based dotstar class for use in Particle ecosystem.
+
 #include "Particle.h"
 #ifndef GATORDOT_H
 #define GATORDOT_H

@@ -1,6 +1,6 @@
 # gatordot
 
-A Particle library for gatordot
+A Particle library for DotStar (APA102) LED modules. 
 
 ## Welcome to your library!
 
@@ -56,6 +56,6 @@ At this point, you can create a [GitHub pull request](https://help.github.com/ar
 If you wish to make your library public, use `particle library publish` or `Publish` command.
 
 ## LICENSE
-Copyright 2020 jon@gatorbot.com
+Copyright 2020–2023 Gatorbot LLC
 
-Licensed under the <insert your choice of license here> license
+Licensed under the MIT license
