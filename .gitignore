@@ -1,1 +1,30 @@
+# Particle
+*.bin
+particle_project.properties
+particle-cli-config.json
+
+# Build artifacts
+*.o
+*.d
+*.dSYM
+*.elf
+*.hex
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+*~
+
+# OS
 .DS_Store
+.DS_Store?
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+temp/
+*.tmp
