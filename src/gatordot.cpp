@@ -26,15 +26,15 @@ void GatorDot::begin(){
     SPI.begin();
 }
 
-void GatorDot::fill(PixelBlock* pxls){
+void GatorDot::fill(PixelBlock* pxls, unsigned int offset){
     SPI.beginTransaction(settings);
     SPI.transfer(&startFrame, NULL, 4, NULL); // start frame
     for (int i = 0; i < numpix; ++i){
-        // send a pixel repeating pixels in block for numpix
+        // send a pixel repeating pixels in block for numpix, with offset
         SPI.transfer(brightness | bMask);
-        SPI.transfer(pxls->pixels[i%pxls->length].blu);
-        SPI.transfer(pxls->pixels[i%pxls->length].grn);
-        SPI.transfer(pxls->pixels[i%pxls->length].red);
+        SPI.transfer(pxls->pixels[(i + offset) % pxls->length].blu);
+        SPI.transfer(pxls->pixels[(i + offset) % pxls->length].grn);
+        SPI.transfer(pxls->pixels[(i + offset) % pxls->length].red);
     }
     // Send enough zero bytes to ensure all LEDs latch (APA102 spec: n/8 + 1 zeros)
     int endFrameBytes = (numpix / 8) + 1;

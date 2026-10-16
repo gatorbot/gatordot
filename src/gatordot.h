@@ -39,7 +39,7 @@ struct GatorDot {
     GatorDot(unsigned int n, SPISettings settings = SPISettings(8*MHZ, MSBFIRST, SPI_MODE3));
     void begin();
     //void fill(uint32_t clr);
-    void fill(PixelBlock* pxls);
+    void fill(PixelBlock* pxls, unsigned int offset = 0);
     void clear();
 };
 #endif
