@@ -17,10 +17,8 @@ PixelBlock::~PixelBlock(){
 
 // GATORDOT
 //
-GatorDot::GatorDot(unsigned int n = 0){
-    brightness = 0xFF;
-    numpix = n;
-    settings = SPISettings(8*MHZ, MSBFIRST, SPI_MODE3);
+GatorDot::GatorDot(unsigned int n, SPISettings s) 
+    : brightness(0xFF), numpix(n), settings(s) {
 }
 
 void GatorDot::begin(){
@@ -38,7 +36,11 @@ void GatorDot::fill(PixelBlock* pxls){
         SPI.transfer(pxls->pixels[i%pxls->length].grn);
         SPI.transfer(pxls->pixels[i%pxls->length].red);
     }
-    SPI.transfer(&endFrame, NULL, 4, NULL); // end frame
+    // Send enough zero bytes to ensure all LEDs latch (APA102 spec: n/8 + 1 zeros)
+    int endFrameBytes = (numpix / 8) + 1;
+    for (int i = 0; i < endFrameBytes; i++) {
+        SPI.transfer(0x00);
+    }
     SPI.endTransaction();
 }
 
@@ -47,6 +49,10 @@ void GatorDot::clear(){
     SPI.beginTransaction(settings);
     SPI.transfer(&startFrame, NULL, 4, NULL);
     for (int i = 0; i<numpix; i++) SPI.transfer(buf, NULL, 4, NULL);
-    SPI.transfer(&endFrame, NULL, 4, NULL);
+    // Send enough zero bytes to ensure all LEDs latch
+    int endFrameBytes = (numpix / 8) + 1;
+    for (int i = 0; i < endFrameBytes; i++) {
+        SPI.transfer(0x00);
+    }
     SPI.endTransaction();
 }

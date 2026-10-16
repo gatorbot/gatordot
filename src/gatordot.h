@@ -2,9 +2,10 @@
 // MIT License
 // My intent is to create a native SPI-based dotstar class for use in Particle ecosystem.
 
-#include "Particle.h"
 #ifndef GATORDOT_H
 #define GATORDOT_H
+
+#include "Particle.h"
 
 struct jColor {
     uint8_t red;
@@ -35,7 +36,7 @@ struct GatorDot {
     uint8_t bMask = 0xE0;
     
     // Methods
-    GatorDot(unsigned int n);
+    GatorDot(unsigned int n, SPISettings settings = SPISettings(8*MHZ, MSBFIRST, SPI_MODE3));
     void begin();
     //void fill(uint32_t clr);
     void fill(PixelBlock* pxls);
